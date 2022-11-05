@@ -14,12 +14,16 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "next/link";
 
-const pages = ["Flight Finder", "Groups", "Data", "???"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ['Flight Finder', 'Groups', 'Data', "???"];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 // routing
 export const navLinks = [
   { name: "Flight Finder", path: "/flight-finder" },
+  {
+    name: "Your Flights",
+    path: "/your-flights",
+  },
   {
     name: "Groups",
     path: "/groups",
@@ -31,7 +35,7 @@ export const navLinks = [
   {
     name: "Blog",
     path: "/blog",
-  },
+  }
 ];
 
 export default function Navbar() {

@@ -1,4 +1,4 @@
-function Chat() {
+export const Login = () => {
   return (
     <div class="w-full h-auto overflow-scroll block h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center">
       <div class="bg-white py-6 px-10 sm:max-w-md w-full ">
@@ -61,6 +61,6 @@ function Chat() {
       </div>
     </div>
   );
-}
+};
 
-export default Chat;
+export default Login;

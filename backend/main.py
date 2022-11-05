@@ -14,8 +14,6 @@
 
 
 # api.add_resource(HelloApiHandler, '/flask/hello')
-# #
-
 
 from flask import Flask
 app = Flask(__name__)

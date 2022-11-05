@@ -60,7 +60,7 @@ function Chat() {
         </div>
       </div>
       <button class="text-white bg-gradient-to-r from-violet-600  to-rose-600 h-100 w-120 px-10 py-2 rounded-full">
-        <a href="">
+        <a href="/flight-finder">
           <div class="text-center text-lg font-medium">Try It Out Yourself</div>
         </a>
       </button>

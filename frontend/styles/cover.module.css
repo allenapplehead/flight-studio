@@ -1,0 +1,168 @@
+/* Typography */
+/**************************/
+.parallaxSection h1 {
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.parallaxSection h2 {
+    font-size: 70px;
+    letter-spacing: 10px;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+    text-transform: uppercase;
+    z-index: 10;
+    opacity: .9;
+}
+
+.parallaxSection h3 {
+    font-size: 14px;
+    line-height: 0;
+    font-weight: 400;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: black;
+}
+
+.parallaxSection p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+/* Section - Title */
+/**************************/
+.parallaxSection .title {
+    background: white;
+    padding: 60px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.parallaxSection .title h1 {
+    font-size: 35px;
+    letter-spacing: 8px;
+}
+
+/* Section - Block */
+/**************************/
+.parallaxSection .block {
+    background: white;
+    padding: 60px;
+    width: 820px;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+.parallaxSection .block-gray {
+    background: #f2f2f2;
+    padding: 60px;
+}
+
+.parallaxSection .section-overlay-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.70;
+}
+
+/* Section - Parallax */
+/**************************/
+.parallaxSection .parallaxOne {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-image: url("../assets/airport.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.parallaxSection .parallaxTwo {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-image: url(https://images.unsplash.com/photo-1432163230927-a32e4fd5a326?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=);
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.parallaxSection .parallaxThree {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-image: url(https://images.unsplash.com/photo-1440688807730-73e4e2169fb8?dpr=1&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=);
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/* Extras */
+/**************************/
+.parallaxSection .line-break {
+    border-bottom: 1px solid black;
+    width: 150px;
+    margin: 0 auto;
+}
+
+/* Media Queries */
+/**************************/
+@media screen and (max-width: 959px) and (min-width: 768px) {
+    .parallaxSection .block {
+        padding: 40px;
+        width: 620px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .parallaxSection .block {
+        padding: 30px;
+        width: 420px;
+    }
+
+    .parallaxSection h2 {
+        font-size: 30px;
+    }
+
+    .parallaxSection .block {
+        padding: 30px;
+    }
+
+    .parallaxSection .parallaxOne,
+    .parallaxSection .parallaxTwo,
+    .parallaxSection .parallaxThree {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .parallaxSection .block {
+        padding: 30px 15px;
+        width: 290px;
+    }
+}

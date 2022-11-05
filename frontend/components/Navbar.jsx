@@ -12,9 +12,29 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import Link from "next/link";
 
-const pages = ['Flight Finder', 'Groups', 'Data'];
+const pages = ['Flight Finder', 'Groups', 'Data', "???"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+// routing
+export const navLinks = [
+  { name: "Flight Finder", 
+   path: "/flight-finder" 
+  },
+  {
+    name: "Groups",
+    path: "/groups",
+  },
+  {
+    name: "Data",
+    path: "/data",
+  },
+  {
+    name: "Blog",
+    path: "/blog",
+  }
+];
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -87,10 +107,12 @@ export default function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {navLinks.map((link, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    {page}
+                    <Link href={link.path}>
+                      {link.name}
+                    </Link>
                   </Typography>
                 </MenuItem>
               ))}
@@ -116,14 +138,16 @@ export default function Navbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Josefin Sans' }}
-              >
-                {page}
-              </Button>
+            {navLinks.map((link, index) => (
+              <Link href={link.path}>
+                <Button
+                  key={index}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Josefin Sans' }}
+                >
+                  {link.name}
+                </Button>
+              </Link>
             ))}
           </Box>
 

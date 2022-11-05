@@ -6,6 +6,7 @@ function Cover() {
         <section>
           <div className={style.parallaxOne}>
             <h2 className="font-bold">Welcome to Flight Studio</h2>
+            <br/>
             <h3 className="font-bold">
               All in one place for all your flight needs.
             </h3>

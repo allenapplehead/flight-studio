@@ -2,6 +2,8 @@ import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Cover from "../components/Cover";
 import Chat from "../components/subcontents/Chat";
+import Login from "../components/Login";
+
 export default function Home() {
   return (
     <div>
@@ -14,6 +16,7 @@ export default function Home() {
         <Navbar />
         <Cover />
         <Chat />
+        <Login />
       </main>
     </div>
   );

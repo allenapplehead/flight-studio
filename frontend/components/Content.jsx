@@ -14,7 +14,7 @@ function Chat() {
             loading="lazy"
             width=""
             height=""
-            class="rounded-lg"
+            class="pl-6 rounded-md"
           />
         </div>
         <div class="md:7/12 lg:w-6/12">

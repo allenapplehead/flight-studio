@@ -19,18 +19,12 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 // routing
 export const navLinks = [
-  { name: "Flight Finder", path: "/flight-finder" },
-  {
-    name: "Your Flights",
-    path: "/your-flights",
+  { name: "Flight Finder", 
+    path: "/flight-finder" 
   },
   {
     name: "Groups",
     path: "/groups",
-  },
-  {
-    name: "Data",
-    path: "/data",
   },
 ];
 

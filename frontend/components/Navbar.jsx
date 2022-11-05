@@ -1,39 +1,44 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+import Link from "next/link";
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#ff9e80',
-      },
-      secondary: {
-        // This is green.A700 as hex.
-        main: '#11cb5f',
-      },
-    },
-});
-
-const pages = ['Flight Finder', 'Groups', 'Data'];
+const pages = ['Flight Finder', 'Groups', 'Data', "???"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+// routing
+export const navLinks = [
+  { name: "Flight Finder", 
+   path: "/flight-finder" 
+  },
+  {
+    name: "Groups",
+    path: "/groups",
+  },
+  {
+    name: "Data",
+    path: "/data",
+  },
+  {
+    name: "Blog",
+    path: "/blog",
+  }
+];
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [login, setLogin] = React.useState(0);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -51,10 +56,13 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      className="bg-gradient-to-r from-blue-400 via-purple-300 to-pink-300"
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -62,18 +70,18 @@ export default function Navbar() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'Josefin Sans',
+              display: { xs: "none", md: "flex" },
+              fontFamily: "Josefin Sans",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             Flight Studio
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -88,30 +96,32 @@ export default function Navbar() {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    {page}
+                    <Link href={link.path}>
+                      {link.name}
+                    </Link>
                   </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -119,29 +129,31 @@ export default function Navbar() {
             href=""
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: 'Josefin Sans',
+              fontFamily: "Josefin Sans",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Josefin Sans' }}
-              >
-                {page}
-              </Button>
+            {navLinks.map((link, index) => (
+              <Link href={link.path}>
+                <Button
+                  key={index}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Josefin Sans' }}
+                >
+                  {link.name}
+                </Button>
+              </Link>
             ))}
           </Box>
-          {login?
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -171,10 +183,6 @@ export default function Navbar() {
               ))}
             </Menu>
           </Box>
-          :
-          <ThemeProvider theme={theme}>
-            <Button variant="contained" onClick={() => setLogin(1)}>SIGN-IN</Button>
-          </ThemeProvider>}
         </Toolbar>
       </Container>
     </AppBar>

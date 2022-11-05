@@ -21,13 +21,16 @@ export default function MultilineTextFields() {
     >
       <div className={style.parallaxSection}>
         <br/>
-        <h4>Let us find the best flights for you</h4>
+        <center>
+          <h4>Let us find the best flights for you</h4>
+        </center>
         <center>
           <TextField
             id="outlined-textarea"
             label="Where do you want to go today?"
             placeholder="e.g. I want to fly from Toronto to New York under $500 and get there by midnight November 7th 2022 for 2 adults"
             multiline
+            rows={3}
             margin="normal"
           />
         </center>

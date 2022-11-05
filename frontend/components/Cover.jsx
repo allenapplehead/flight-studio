@@ -5,10 +5,11 @@ function Cover() {
       <div className={style.parallaxSection}>
         <section>
           <div className={style.parallaxOne}>
-            <h2 className="font-bold">University of Toronto</h2>
-            <h2 className="font-bold">
-              Engineering Students Consulting Association
-            </h2>
+            <h2 className="font-bold">Welcome to Flight Studio</h2>
+            <br/>
+            <h3 className="font-bold">
+              All in one place for all your flight needs.
+            </h3>
           </div>
         </section>
       </div>

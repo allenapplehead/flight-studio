@@ -11,7 +11,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/Info';
 import Tooltip from '@mui/material/Tooltip';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 
 // Create mock data for know becaue we don't know how to link to backend
@@ -19,7 +18,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export const flights = [
     {
         id: 0,
-        name: 'Flight 0',
+        name: 'Flight 0',   
         from: 'YYZ',
         to: 'SFO',
         price: 300,

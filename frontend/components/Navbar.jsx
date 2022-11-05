@@ -32,10 +32,6 @@ export const navLinks = [
     name: "Data",
     path: "/data",
   },
-  {
-    name: "Blog",
-    path: "/blog",
-  }
 ];
 
 export default function Navbar() {

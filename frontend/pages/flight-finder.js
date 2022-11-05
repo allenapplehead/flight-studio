@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Textbox from "../components/Textbox";
-import Button from '@mui/material/Button';
-import CheckboxList from "../components/Output";
 import style from "../styles/cover.module.css";
 
 export default function Home() {
@@ -16,10 +14,6 @@ export default function Home() {
       <main className={style.parallaxSection}>
         <Navbar />
         <Textbox />
-        <center><Button variant="outlined" align="center">Submit</Button></center>
-        <br/>
-        <br/>
-        <CheckboxList />  
       </main>
     </div>
   );

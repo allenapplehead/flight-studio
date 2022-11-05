@@ -2,14 +2,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import style from "../styles/cover.module.css";
+import Button from '@mui/material/Button';
+import DescriptionAlerts from "../components/Error";
+import CheckboxList from "../components/Output";
 
 export default function MultilineTextFields() {
-  const [value, setValue] = React.useState('');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
+  const [show, setShow] = React.useState(false);
+  const handleSubmit = () => {
+    setShow(!show);
+  }
   return (
     <Box
       component="form"
@@ -33,20 +34,17 @@ export default function MultilineTextFields() {
             rows={3}
             margin="normal"
           />
+          <br/>
+          <Button variant="outlined" align="center" onClick={() => handleSubmit()}>Submit</Button>
         </center>
-        {/* <TextField
-          id="outlined-textarea"
-          label="Multiline Placeholder"
-          placeholder="Placeholder"
-          multiline
-        />
-        <TextField
-          id="outlined-multiline-static"
-          label="Multiline"
-          multiline
-          rows={4}
-          defaultValue="Default Value"
-        /> */}
+        <br/>
+        {
+          show && <DescriptionAlerts/>
+        }
+        <br/>
+        {
+          !show && <CheckboxList/>
+        }
       </div>
     </Box>
   );

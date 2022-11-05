@@ -26,7 +26,7 @@ export default function MultilineTextFields() {
           <TextField
             id="outlined-textarea"
             label="Where do you want to go today?"
-            placeholder="e.g. I want to fly from Toronto to New York under $500 and get there by midnight November 7th 2022"
+            placeholder="e.g. I want to fly from Toronto to New York under $500 and get there by midnight November 7th 2022 for 2 adults"
             multiline
             margin="normal"
           />

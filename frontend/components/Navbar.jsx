@@ -13,6 +13,20 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#ff9e80',
+      },
+      secondary: {
+        // This is green.A700 as hex.
+        main: '#11cb5f',
+      },
+    },
+});
+
 const pages = ['Flight Finder', 'Groups', 'Data'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -158,7 +172,9 @@ export default function Navbar() {
             </Menu>
           </Box>
           :
-          <Button variant="contained" onClick={() => setLogin(1)}>SIGN-IN</Button>}
+          <ThemeProvider theme={theme}>
+            <Button variant="contained" onClick={() => setLogin(1)}>SIGN-IN</Button>
+          </ThemeProvider>}
         </Toolbar>
       </Container>
     </AppBar>

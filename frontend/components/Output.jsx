@@ -110,7 +110,7 @@ export default function CheckboxList() {
         <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
             <Box gridColumn="span 6">
                 <h4>&nbsp;Flights:</h4>
-                <List sx={{ width: '90%', bgcolor: 'background.paper' }}>
+                <List sx={{ width: '90%'}}>
                 {[0, 1, 2, 3].map((value) => {
                     const labelId = `checkbox-list-label-${value}`;
 
@@ -145,7 +145,7 @@ export default function CheckboxList() {
             </Box>
             <Box gridColumn="span 6">
                 <h4>&nbsp;Groups:</h4>
-                <List sx={{ width: '90%', bgcolor: 'background.paper' }}>
+                <List sx={{ width: '90%'}}>
                 {[0, 1, 2, 3].map((value) => {
                     const labelId = `checkbox-list-label-${value}`;
 
@@ -180,6 +180,7 @@ export default function CheckboxList() {
             </Box>
         </Box>
         <center>
+            <br/>
             <Button variant="outlined" align="center">
                 Go to Checkout
             </Button>

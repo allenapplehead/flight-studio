@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const path = require("path");
-const withSass = require("@zeit/next-sass");
 const nextConfig = {
   reactStrictMode: true,
   output: "standalone",

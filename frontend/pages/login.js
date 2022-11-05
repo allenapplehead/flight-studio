@@ -1,6 +1,6 @@
 export const Login = () => {
   return (
-    <div class="w-full h-auto overflow-scroll block h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center">
+    <div class="w-full h-auto overflow-scroll bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center">
       <div class="bg-white py-6 px-10 sm:max-w-md w-full ">
         <div class="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
           Registration Form
@@ -17,7 +17,7 @@ export const Login = () => {
             <input
               type="email"
               class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 my-8"
-              placeholder="Eamil Adress "
+              placeholder="Email Adress "
             />
           </div>
           <div>

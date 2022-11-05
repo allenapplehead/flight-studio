@@ -1,3 +1,5 @@
+
+
 export const Login = () => {
   return (
     <div class="w-full h-auto overflow-scroll block h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center">
@@ -17,10 +19,10 @@ export const Login = () => {
             <input
               type="email"
               class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 my-8"
-              placeholder="Eamil Adress "
+              placeholder="Email Address "
             />
           </div>
-          <div>
+          {/*<div>
             <input
               type="text"
               class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 mb-8"
@@ -33,7 +35,7 @@ export const Login = () => {
               class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500 mb-8"
               placeholder="Phone "
             />
-          </div>
+          </div>*/}
           <div class="">
             <input
               type="password"
@@ -43,7 +45,7 @@ export const Login = () => {
           </div>
           <div class="flex">
             <input type="checkbox" class="border-sky-400 " value="" />
-            <div class="px-3 text-gray-500">I accept terms & conditions</div>
+            <div class="px-3 text-gray-500">I accept the <a href="">Terms & Conditions</a></div>
           </div>
           <div class="flex justify-center my-6">
             <button class=" rounded-full  p-3 w-full sm:w-56   bg-gradient-to-r from-sky-600  to-teal-300 text-white text-lg font-semibold ">
@@ -51,7 +53,7 @@ export const Login = () => {
             </button>
           </div>
           <div class="flex justify-center ">
-            <p class="text-gray-500">Already have an acount? </p>
+            <p class="text-gray-500">Already have an account? </p>
             <a href="" class="text-sky-600 pl-2">
               {" "}
               Sign In

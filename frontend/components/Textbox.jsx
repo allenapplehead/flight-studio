@@ -12,11 +12,11 @@ export default function Content() {
     setShow(!show);
   };
   return (
-    <div class="py-16 bg-gradient-to-r from-cyan-100  to-rose-100 text-center grid place-items-center">
+    <div class="py-16 bg-gradient-to-r from-cyan-100  to-rose-100">
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "100ch" },
+          "& .MuiTextField-root": { m: 1, width: "130ch" },
         }}
         noValidate
         autoComplete="off"

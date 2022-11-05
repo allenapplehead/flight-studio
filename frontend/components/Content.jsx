@@ -14,7 +14,7 @@ function Chat() {
             loading="lazy"
             width=""
             height=""
-            class="rounded-lg"
+            class="pl-6 rounded-md"
           />
         </div>
         <div class="md:7/12 lg:w-6/12">
@@ -60,7 +60,7 @@ function Chat() {
         </div>
       </div>
       <button class="text-white bg-gradient-to-r from-violet-600  to-rose-600 h-100 w-120 px-10 py-2 rounded-full">
-        <a href="">
+        <a href="/flight-finder ">
           <div class="text-center text-lg font-medium">Try It Out Yourself</div>
         </a>
       </button>

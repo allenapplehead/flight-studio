@@ -28,8 +28,9 @@ yarn run dev
 cd ../backend
 virtualenv venv
 source venv/bin/activate
-pip install -r /path/to/requirements.txt
+pip install -r requirements.txt
 ```
 
 # flight-studio
+
 # flight-studio

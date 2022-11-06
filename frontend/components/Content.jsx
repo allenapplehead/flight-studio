@@ -1,7 +1,7 @@
-import Button from "@mui/material/Button";
 import Image from "next/image";
 import mypic from "../assets/southkoreastreet.jpg";
 import mypic2 from "../assets/undraw_online_chatting.svg";
+//import ReactCSSTransitionGroup from 'react-transition-group';
 
 function Chat() {
   return (
@@ -14,9 +14,10 @@ function Chat() {
             loading="lazy"
             width=""
             height=""
-            class="pl-6 rounded-md"
+            class="pl-6 rounded-lg"
           />
         </div>
+        
         <div class="md:7/12 lg:w-6/12">
           <div class="text-2xl text-gray-900 font-bold md:text-4xl">
             Anytime, anywhere, with only a single sentence.
@@ -29,6 +30,7 @@ function Chat() {
             <strong>single prompt</strong>.
           </div>
         </div>
+        
       </div>
       <div class="grid place-items-center w-2/3 mt-4 py-6">
         <div class="text-2xl text-gray-900 font-bold md:text-4xl v">

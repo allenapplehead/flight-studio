@@ -2,13 +2,20 @@ from amadeus import Client, ResponseError
 import os
 import openai
 
+
+'''
+This function takes in a string of text and returns a list of airport codes
+'''
+
+
 class GetFlights:
     # set up Amadeus client and openai
     __amadeus = Client(
-        client_id='fAwinMExdvRlfYYWXiyTdwGngmig2Uir',  # api key
-        client_secret='m78GQsUGRqeAfpvU'  # api secret key
+        client_id=os.getenv("AMADEUS_ID"),  # api key
+        client_secret=os.getenv("AMADEUS_SECRET")
+        # api secret key
     )
-    openai.api_key = "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"
+    openai.api_key = os.getenv("OPENAI_API_KEY")
 
     # set up private and protected variables
     __flights = []
@@ -21,6 +28,7 @@ class GetFlights:
 
     :param input: the raw input from text field
     '''
+
     def __init__(self, input):
         self.__autoResponse = openai.Completion.create(
             model="text-davinci-002",
@@ -31,7 +39,8 @@ class GetFlights:
             frequency_penalty=0.0,
             presence_penalty=0.0,
             stop=["\n"])  # output follows a specific format
-        self._airports = self.__autoResponse["choices"][0]["text"].strip().split(", ")  # get the output as a string
+        self._airports = self.__autoResponse["choices"][0]["text"].strip().split(
+            ", ")  # get the output as a string
 
     '''
     getRoutes
@@ -40,6 +49,7 @@ class GetFlights:
     :param departureDate: the day of departure as a string in the format of 'yyyy-mm-dd'
     :param adults: the number of adults aged 12 and over
     '''
+
     def getRoutes(self, departureDate, adults):
         try:
             response = self.__amadeus.shopping.flight_offers_search.get(
@@ -53,8 +63,8 @@ class GetFlights:
         except ResponseError as error:
             print(error)
             self.__flightDisplay = False
-            return {'status':'error obtaining route information'}
-    
+            return {'status': 'error obtaining route information'}
+
     '''
     get all the routes from specified airports for all airlines at a certain day
 
@@ -63,7 +73,8 @@ class GetFlights:
     :param departureDate: the day of departure as a string in the format of 'yyyy-mm-dd'
     :param adults: the number of adults aged 12 and over
     '''
-    def getRoutes(self, departureAirport, arrivalAirport, departureDate, adults):
+
+    def getNewRoutes(self, departureAirport, arrivalAirport, departureDate, adults):
         try:
             response = self.__amadeus.shopping.flight_offers_search.get(
                 originLocationCode=departureAirport,
@@ -76,7 +87,7 @@ class GetFlights:
         except ResponseError as error:
             print(error)
             self.__flightDisplay = False
-            return {'status':'error obtaining route information'}
+            return {'status': 'error obtaining route information'}
 
     '''
     getCheapestRoute
@@ -84,10 +95,11 @@ class GetFlights:
 
     :rtype: dict
     '''
-    def getCheapestRoute(self):
-        if(self.__flightDisplay):
+
+    def getCheapestRoute(self, departureDate, adults):
+        self.getRoutes(departureDate, adults)
+        if (self.__flightDisplay):
             self.__flights.sort(key=lambda d: d['price']['grandTotal'])
             return self.__flights[0]
         else:
-            return {'status':'error obtaining route information'}
-
+            return {'status': 'error obtaining route information'}

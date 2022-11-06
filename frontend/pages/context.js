@@ -13,3 +13,6 @@ export const ContextProvider = (props) => {
 
   return <Context.Provider value={value}>{props.children}</Context.Provider>;
 };
+export default function Home() {
+  return (<div></div>);
+}

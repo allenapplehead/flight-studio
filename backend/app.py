@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
-from blueprints.flight_endpoints import flight
-import datefinder
-
+# from blueprints.flight_endpoints import flight
+from api.FlightSearch import GetFlights
 app = Flask(__name__)
 
 
@@ -13,11 +12,11 @@ app = Flask(__name__)
 
 #     return str(matches).encode()
 
-app.register_blueprint(flight)
+# app.register_blueprint(flight)
 
 
 @app.route('/')
-def hello_world():
+def whateverName():
     return {
         "name": "Nagato",
         "about": "Hello! I'm a full stack developer that loves python and javascript"

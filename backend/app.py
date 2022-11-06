@@ -16,8 +16,7 @@ cors = CORS(app)
 
 @app.route('/', methods=['GET'])
 def getFlightInformation():
-    # prompt1 = request.get_json()["user-text"]
-    prompt1 = "I want to go from Toronto to Vancouver on December 12, 2022"
+    prompt1 = request.get_json()["user-text"]
     dateAPI = DateSearch(prompt1)
     date = dateAPI.response
     airportClient = AirportSearch(prompt1)

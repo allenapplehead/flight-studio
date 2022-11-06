@@ -1,7 +1,6 @@
 import Image from "next/image";
 import mypic from "../assets/southkoreastreet.jpg";
 import mypic2 from "../assets/undraw_online_chatting.svg";
-//import ReactCSSTransitionGroup from 'react-transition-group';
 
 function Chat() {
   return (
@@ -17,16 +16,14 @@ function Chat() {
             class="pl-6 rounded-lg"
           />
         </div>
-        
         <div class="md:7/12 lg:w-6/12">
           <div class="text-2xl text-gray-900 font-bold md:text-4xl">
-            Anytime, anywhere, with only a single sentence.
+            Know the price of a flight anytime and to anywhere, with only a single sentence.
           </div>
           <div class="mt-6 text-gray-600 text-lg">
             Skip the hassle of comparing prices and availabilities on different
             airlines. Flight Studio harnesses the power of{" "}
-            <strong>artificial intelligence</strong> to generate available
-            flights that suit your needs, all from a{" "}
+            <strong>artificial intelligence</strong> to predict the expected price of your trip, all from a{" "}
             <strong>single prompt</strong>.
           </div>
         </div>
@@ -34,12 +31,11 @@ function Chat() {
       </div>
       <div class="grid place-items-center w-2/3 mt-4 py-6">
         <div class="text-2xl text-gray-900 font-bold md:text-4xl v">
-          Find flights naturally and effortlessly.
+          Get your price effortlessly.
         </div>
         <div class=" text-gray-600 text-lg py-4">
-          Using <strong>Natural Language Processing</strong> models, Flight
-          Studio identifies where and when you want to go, while also
-          considering the amount of people and your budget.
+          Using a <strong>Machine Learning</strong> model with a correlation rate of 97%, Flight
+          Studio only needs to know where and when you want to go, to give you an accurate price prediction.
         </div>
       </div>
       <div class="container px-6 text-gray-600 md:px-12 xl:px-6">

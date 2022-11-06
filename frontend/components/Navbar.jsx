@@ -114,7 +114,7 @@ export default function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AirplaneTicketIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -131,7 +131,7 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Flight Studio
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {navLinks.map((link, index) => (

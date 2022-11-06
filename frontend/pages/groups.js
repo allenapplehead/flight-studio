@@ -24,7 +24,7 @@ export default function Home() {
 
     socket.on("newIncomingMessage", (msg) => {
       setMessages((currentMsg) => [
-        [...currentMsg].slice(0, -1),
+        ...currentMsg.slice(0, -1),
         { author: msg.author, message: msg.message },
       ]);
       //console.log(messages);

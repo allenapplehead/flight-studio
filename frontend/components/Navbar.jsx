@@ -34,6 +34,9 @@ export default function Navbar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+  const handleLoginn = () => {
+    setLogin({ name: "Xiao" });
+  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -187,7 +190,9 @@ export default function Navbar() {
             <Box sx={{ flexGrow: 0 }}>
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center">
-                  <Link href={"login"}>Login</Link>
+                  <Link href={"login"} onClick={handleLoginn}>
+                    Login
+                  </Link>
                 </Typography>
               </MenuItem>
             </Box>

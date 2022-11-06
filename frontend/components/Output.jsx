@@ -86,6 +86,13 @@ export const groups = [
     to: "SFO",
     available: true,
   },
+  {
+    id: 4,
+    name: "Flight 4",
+    from: "YTZ",
+    to: "SFO",
+    available: true,
+  },
 ];
 
 export default function CheckboxList({ airportInfo }) {
@@ -100,7 +107,6 @@ export default function CheckboxList({ airportInfo }) {
     } else {
       newChecked.splice(currentIndex, 1);
     }
-
     setChecked(newChecked);
   };
 
@@ -110,9 +116,8 @@ export default function CheckboxList({ airportInfo }) {
         <Box gridColumn="span 6">
           <h4>&nbsp;Flights:</h4>
           <List sx={{ width: "90%" }}>
-            {[0, 1, 2, 3].map((value) => {
+            {airportInfo.Information.map((value) => {
               const labelId = `checkbox-list-label-${value}`;
-
               return (
                 <ListItem
                   key={value}
@@ -142,17 +147,17 @@ export default function CheckboxList({ airportInfo }) {
                     <ListItemText
                       id={labelId}
                       primary={
-                        airportInfo[value].name +
+                        value.name +
                         " from " +
-                        airportInfo[value].from +
+                        airportInfo.Departure +
                         " to " +
-                        airportInfo[value].to +
+                        airportInfo.Arrival +
                         " on " +
-                        airportInfo[value].date +
+                        airportInfo.Date +
                         " at " +
-                        airportInfo[value].time +
+                        value.time +
                         ", price: " +
-                        airportInfo[value].price
+                        value.price
                       }
                     />
                   </ListItemButton>
@@ -164,7 +169,7 @@ export default function CheckboxList({ airportInfo }) {
         <Box gridColumn="span 6">
           <h4>&nbsp;Groups:</h4>
           <List sx={{ width: "90%" }}>
-            {[0, 1, 2, 3].map((value) => {
+            {[0, 1, 2, 3, 4].map((value) => {
               const labelId = `checkbox-list-label-${value}`;
 
               return (
@@ -206,7 +211,7 @@ export default function CheckboxList({ airportInfo }) {
       </Box>
       <center>
         <br />
-        <Button variant="outlined" align="center">
+        <Button href="/groups" variant="outlined" align="center">
           Go to Checkout
         </Button>
       </center>

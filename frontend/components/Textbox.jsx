@@ -10,6 +10,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Content() {
   const [show, setShow] = React.useState(true);
+  const [hasData, setHasData] = React.useState(false);
   const [string, setString] = React.useState("");
   const [airportInfo, setAirportInfo] = React.useState({});
   const [loading, setLoading] = React.useState(false);
@@ -19,8 +20,10 @@ export default function Content() {
   };
 
   const handleSubmit = () => {
+    setHasData(false);
+    console.log(string);
     setLoading(true);
-    setShow(false);
+    setShow(true);
     console.log("Start fetching");
     // setShow(!show);
     fetch("http://localhost:5432/getInfo", {
@@ -34,6 +37,7 @@ export default function Content() {
     })
       .then((res) => res.json())
       .then((data) => {
+        setHasData(true);
         setLoading(false);
         setShow(true);
         console.log("end fetching");
@@ -85,9 +89,9 @@ export default function Content() {
               </Button>
             )}
           </center>
-          {show && (
+          {show && hasData && (
             <div className="flex gap-5 mt-5 justify-center">
-              <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">
+              <div className="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">
                 <svg
                   width="24px"
                   height="24px"
@@ -100,9 +104,9 @@ export default function Content() {
                     <path d="M10.478 11.632L5.968 4.56l1.931-.518 6.951 6.42 5.262-1.41a1.5 1.5 0 0 1 .776 2.898L5.916 15.96l-.776-2.898.241-.065 2.467 2.445-2.626.704a1 1 0 0 1-1.133-.48L1.466 10.94l1.449-.388 2.466 2.445 5.097-1.366zM4 19h16v2H4v-2z" />
                   </g>
                 </svg>
-                Tag
+                {airportInfo.Departure}
               </div>
-              <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-red-200 text-red-700 rounded-full">
+              <div className="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-red-200 text-red-700 rounded-full">
                 <svg
                   width="24px"
                   height="24px"
@@ -115,19 +119,35 @@ export default function Content() {
                     <path d="M10.254 10.47l-.37-8.382 1.933.518 2.81 9.035 5.261 1.41a1.5 1.5 0 1 1-.776 2.898L4.14 11.937l.776-2.898.242.065.914 3.35-2.627-.703a1 1 0 0 1-.74-.983l.09-5.403 1.449.388.914 3.351 5.096 1.366zM4 19h16v2H4v-2z" />
                   </g>
                 </svg>
-                Tag
+                {airportInfo.Arrival}
               </div>
-              <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full">
+              <div className="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full">
                 <CalendarMonthIcon className="fill-green-700" />
-                Tag
+                {airportInfo.Date}
               </div>
             </div>
           )}
 
           <br />
-          {show && <DescriptionAlerts />}
+          {!show && <DescriptionAlerts />}
           <br />
-          {!show && <CheckboxList />}
+          {show && hasData && <CheckboxList airportInfo={airportInfo} />}
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       </Box>
     </div>

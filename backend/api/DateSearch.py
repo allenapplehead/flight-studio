@@ -1,8 +1,9 @@
 import os
 import openai
 
+
 class DateSearch:
-    openai.api_key = "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"
+    openai.api_key = os.getenv("OPENAI_API_KEY")
     response = ""
 
     '''
@@ -10,6 +11,7 @@ class DateSearch:
 
     :param input: the raw input from text field
     '''
+
     def __init__(self, input):
         self.response = openai.Completion.create(
             model="text-davinci-002",

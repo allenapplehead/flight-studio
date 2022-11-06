@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 # from blueprints.flight_endpoints import flight
 from api.FlightSearch import GetFlights
+from api.DateSearch import DateSearch
 app = Flask(__name__)
 
 
@@ -16,10 +17,29 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def whateverName():
+def getFlightInformation():
+    prompt1 = "i want to travel from Toronto to San Fransisco on December 1 2022"
+    date = DateSearch(prompt1)
+    flightClient = GetFlights(prompt1)
+
+    flight = flightClient.getCheapestRoute(date.response, 1)
+    num = flightClient.getCallsign(flight)
+    airports = flightClient.getAirports()
+    dep = flightClient.getDepartureInfo(flight)
+    arr = flightClient.getArrivalInfo(flight)
+    cost = flightClient.getPrice(flight)
+    duration = flightClient.getDuration(flight)
+
     return {
-        "name": "Nagato",
-        "about": "Hello! I'm a full stack developer that loves python and javascript"
+        "Flight Number": num,
+        "Departure Airport": airports[0],
+        "Departure Terminal": dep['terminal'],
+        "Departure Time": dep['at'],
+        "Arrival Airport": airports[1],
+        "Arrival Terminal": arr['terminal'],
+        "Arrival Time": arr['at'],
+        "Flight Duration": duration,
+        "Cost": cost,
     }
 
 

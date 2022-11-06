@@ -114,7 +114,9 @@ export default function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AirplaneTicketIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AirplaneTicketIcon
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+          />
           <Typography
             variant="h5"
             noWrap
@@ -135,9 +137,8 @@ export default function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {navLinks.map((link, index) => (
-              <Link href={link.path}>
+              <Link href={link.path} key={index}>
                 <Button
-                  key={index}
                   onClick={handleCloseNavMenu}
                   sx={{
                     my: 2,

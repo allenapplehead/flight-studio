@@ -1,12 +1,8 @@
-from amadeus import Client, ResponseError
 import os
 import openai
 
+
 class DateSearch:
-    __amadeus = Client(
-        client_id=os.getenv("AMADEUS_ID"),  # api key
-        client_secret=os.getenv("AMADEUS_SECRET")  # api secret key
-    )
     openai.api_key = os.getenv("OPENAI_API_KEY")
     response = ""
 
@@ -15,6 +11,7 @@ class DateSearch:
 
     :param input: the raw input from text field
     '''
+
     def __init__(self, input):
         self.response = openai.Completion.create(
             model="text-davinci-002",
@@ -26,6 +23,7 @@ class DateSearch:
             presence_penalty=0.0,
             stop=["\n"])["choices"][0]["text"].strip()
 
-# test block
-#temp = DateSearch("lets go outside on May 28 2023")
-#print(temp.response)
+    def timeStrip(self, fullTime):
+        time = fullTime.split(":")
+        strTime = time[0] + ":" + time[1]
+        return strTime

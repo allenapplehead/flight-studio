@@ -1,3 +1,4 @@
+import { Link } from "@mui/material";
 import { useState } from "react";
 import { register } from "../appwrite/appwrite_client.js";
 import Navbar from "../components/Navbar.jsx";
@@ -76,7 +77,7 @@ export const Login = () => {
               className=" rounded-full  p-3 w-full sm:w-56   bg-gradient-to-r from-sky-600  to-teal-300 text-white text-lg font-semibold "
               onClick={handleSubmit}
             >
-              Create Account
+              <Link href="/">Create Account</Link>
             </button>
           </div>
           <div className="flex justify-center ">

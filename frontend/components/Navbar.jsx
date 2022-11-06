@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "next/link";
+import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 
 const pages = ['Flight Finder', 'Groups', 'Data', "???"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -54,7 +55,7 @@ export default function Navbar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <AirplaneTicketIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap

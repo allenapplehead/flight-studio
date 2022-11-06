@@ -1,11 +1,5 @@
 import {Client, Account, ID} from 'appwrite';
 
-const client = new Client()
-    .setEndpoint('http://localhost/v1')
-    .setProject('6366da325af6bd833fa4');
-
-const account = new Account(client);
-
 /**
  * Registration
  * 
@@ -13,11 +7,17 @@ const account = new Account(client);
  * @param {string} pw password
  * @param {string} name name
  */
-export default function register(email, pw, name) {
+export function register(email, pw, name) {
+    const client = new Client()
+    .setEndpoint('http://localhost/v1')
+    .setProject('636712c874fb329f2dda');
+
+    const account = new Account(client);
+
     account.create(
         ID.unique(),
         email,
-        password,
+        pw,
         name
     ).then(response => {
         console.log(response);
@@ -34,7 +34,13 @@ export default function register(email, pw, name) {
  * @param {*} email email
  * @param {*} pw password
  */
-export default function login(email, pw) {
+export function login(email, pw) {
+    const client = new Client()
+    .setEndpoint('http://localhost/v1')
+    .setProject('636712c874fb329f2dda');
+
+    const account = new Account(client);
+
     account.createEmailSession(email, pw).then(response => {
         console.log(response);
         return true;

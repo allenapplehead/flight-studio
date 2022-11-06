@@ -9,10 +9,14 @@ import axios from "axios";
 
 export default function Content() {
   const [show, setShow] = React.useState(false);
-  const [string, setString] = React.useState(
-    "i want to travel from vancouver to shanghai on nov 23, 2022"
-  );
+  const [string, setString] = React.useState('');
   const [airportInfo, setAirportInfo] = React.useState({});
+
+  const handleChange = event => {
+    setString(event.target.value);
+
+    console.log('value is:', event.target.value);
+  };
 
   const handleSubmit = () => {
     console.log("Start fetching");
@@ -59,6 +63,9 @@ export default function Content() {
               multiline
               rows={3}
               margin="normal"
+              name="outlined-textarea"
+              onChange={handleChange}
+              value={string}
             />
             <br />
             <Button

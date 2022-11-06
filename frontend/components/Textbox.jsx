@@ -12,7 +12,7 @@ export default function Content() {
     setShow(!show);
   };
   return (
-    <div class="py-16 bg-gradient-to-r from-cyan-100  to-rose-100">
+    <div className="py-16 bg-gradient-to-r from-cyan-100  to-rose-100">
       <Box
         component="form"
         sx={{

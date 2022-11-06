@@ -35,8 +35,7 @@ function Chat() {
         </div>
         <div class=" text-gray-600 text-lg py-4">
           Using <strong>Natural Language Processing</strong> models, Flight
-          Studio identifies where and when you want to go, while also
-          considering the amount of people and your budget.
+          Studio identifies where and when you want to go with a single sentence.
         </div>
       </div>
       <div className="container px-6 text-gray-600 md:px-12 xl:px-6">

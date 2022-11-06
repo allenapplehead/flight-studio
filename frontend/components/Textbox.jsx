@@ -5,11 +5,40 @@ import style from "../styles/cover.module.css";
 import Button from "@mui/material/Button";
 import DescriptionAlerts from "../components/Error";
 import CheckboxList from "../components/Output";
+import axios from "axios";
 
 export default function Content() {
   const [show, setShow] = React.useState(false);
+  const [string, setString] = React.useState('');
+  const [airportInfo, setAirportInfo] = React.useState({});
+
+  const handleChange = event => {
+    setString(event.target.value);
+
+    console.log('value is:', event.target.value);
+  };
+
   const handleSubmit = () => {
-    setShow(!show);
+    console.log("Start fetching");
+    // setShow(!show);
+    fetch("http://localhost:5432/getInfo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "user-text": string,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("end fetching");
+        console.log(data);
+        setAirportInfo(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="py-16 bg-gradient-to-r from-cyan-100  to-rose-100">
@@ -34,6 +63,9 @@ export default function Content() {
               multiline
               rows={3}
               margin="normal"
+              name="outlined-textarea"
+              onChange={handleChange}
+              value={string}
             />
             <br />
             <Button
@@ -44,6 +76,7 @@ export default function Content() {
               Submit
             </Button>
           </center>
+
           <br />
           {show && <DescriptionAlerts />}
           <br />

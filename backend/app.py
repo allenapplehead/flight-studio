@@ -2,8 +2,10 @@ from flask import Flask, jsonify, request
 # from blueprints.flight_endpoints import flight
 from api.FlightSearch import GetFlights
 from api.DateSearch import DateSearch
-app = Flask(__name__)
+from flask_cors import CORS
 
+app = Flask(__name__)
+cors = CORS(app)
 
 # @app.route('/')
 # def getDate():
@@ -16,9 +18,18 @@ app = Flask(__name__)
 # app.register_blueprint(flight)
 
 
-@app.route('/')
+@app.route('/', methods=['POST'])
+def hello():
+
+    return "hello"
+
+
+@app.route('/getInfo', methods=['POST'])
 def getFlightInformation():
-    prompt1 = "i want to travel from Toronto to San Fransisco on December 1 2022"
+    # print(request.json)
+    # print("goes here")
+    prompt1 = request.get_json()["user-text"]
+    # prompt1 = "I want to fly from Chicago to Fuzhou."
     date = DateSearch(prompt1)
     flightClient = GetFlights(prompt1)
 
@@ -44,4 +55,4 @@ def getFlightInformation():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host="localhost", port=8000, debug=True)

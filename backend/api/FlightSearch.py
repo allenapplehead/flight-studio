@@ -2,7 +2,6 @@ from amadeus import Client, ResponseError
 import os
 import openai
 
-
 '''
 This function takes in a string of text and returns a list of airport codes
 '''
@@ -28,6 +27,7 @@ class GetFlights:
 
     :param input: the raw input from text field
     '''
+
     def __init__(self, input):
         self.__autoResponse = openai.Completion.create(
             model="text-davinci-002",
@@ -47,8 +47,9 @@ class GetFlights:
 
     :rtype: str[]
     '''
+
     def getAirports(self):
-        if(self.__flightDisplay):
+        if (self.__flightDisplay):
             return self._airports
         else:
             return NULL
@@ -62,6 +63,7 @@ class GetFlights:
 
     :rtype: dict
     '''
+
     def getRoutes(self, departureDate, adults):
         try:
             response = self.__amadeus.shopping.flight_offers_search.get(
@@ -88,6 +90,7 @@ class GetFlights:
 
     :rtype: dict
     '''
+
     def getNewRoutes(self, departureAirport, arrivalAirport, departureDate, adults):
         try:
             response = self.__amadeus.shopping.flight_offers_search.get(
@@ -109,6 +112,7 @@ class GetFlights:
 
     :rtype: dict
     '''
+
     def getCheapestRoute(self, departureDate, adults):
         self.getRoutes(departureDate, adults)
         if (self.__flightDisplay):
@@ -124,6 +128,7 @@ class GetFlights:
     :param routeInfo: flight information stored in dictionary
     :rtype: str
     '''
+
     def getPrice(self, routeInfo):
         '''example routeInfo (template)
         {'type': 'flight-offer', 'id': '145', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 
@@ -149,10 +154,11 @@ class GetFlights:
     :param routeInfo: flight information stored in dict
     :rtype: dict
     '''
+
     def getDepartureInfo(self, routeInfo):
         # refer to {@code getPrice} for routeInfo example/template
         return routeInfo['itineraries'][0]['segments'][0]['departure']
-    
+
     '''
     getArrivalInfo
     returns the itinerary arrival information i.e. airport, terminal, date+time 
@@ -160,6 +166,7 @@ class GetFlights:
     :param routeInfo: flight information stored in dict
     :rtype: dict
     '''
+
     def getArrivalInfo(self, routeInfo):
         # refer to {@code getPrice} for routeInfo example/template
         return routeInfo['itineraries'][0]['segments'][0]['arrival']
@@ -171,6 +178,7 @@ class GetFlights:
     :param RouteInfo: flight information stored in dict
     :rtype: str
     '''
+
     def getCallsign(self, routeInfo):
         # refer to {@code getPrice} for routeInfo example/template
         carrier = routeInfo['itineraries'][0]['segments'][0]['carrierCode']
@@ -184,6 +192,7 @@ class GetFlights:
     :param RouteInfo: flight information stored in dict
     :rtype: str
     '''
+
     def getDuration(self, routeInfo):
         # refer to {@code getPrice} for routeInfo example/template
         return routeInfo['itineraries'][0]['segments'][0]['duration']

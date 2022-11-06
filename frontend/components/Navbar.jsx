@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "next/link";
-import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
+import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket";
 
 const pages = ["Flight Finder", "Groups", "Data", "???"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -30,14 +30,16 @@ export const navLinks = [
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [login, setLogin] = React.useState(false);
+  const [login, setLogin] = React.useState({ name: null });
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
+  const handleLogin = (username) => {
+    setLogin({ name: username });
+  };
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -53,7 +55,9 @@ export default function Navbar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AirplaneTicketIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <AirplaneTicketIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
           <Typography
             variant="h6"
             noWrap
@@ -110,7 +114,7 @@ export default function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AirplaneTicketIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -127,7 +131,7 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Flight Studio
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {navLinks.map((link, index) => (
@@ -148,7 +152,7 @@ export default function Navbar() {
             ))}
           </Box>
 
-          {login ? (
+          {login.name != null ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

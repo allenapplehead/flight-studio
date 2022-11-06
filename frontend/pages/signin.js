@@ -1,20 +1,11 @@
-import NavBar from "../components/NavBar";
-
 export const Register = () => {
   return (
     <div class="w-full overflow-scroll h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center">
-      <div class="bg-white py-6 px-10 sm:max-w-md w-full ">
+      <div class="bg-white py-6 px-10 sm:max-w-md w-full rounded-3xl">
         <div class="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
           Log In
         </div>
         <div class="">
-          <div>
-            <input
-              type="text"
-              class="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500"
-              placeholder="Name "
-            />
-          </div>
           <div>
             <input
               type="email"

@@ -58,7 +58,7 @@ function Chat() {
         </div>
       </div>
       <button className="text-white bg-gradient-to-r from-sky-600  to-teal-300 h-100 w-120 px-10 py-2 rounded-full">
-        <a href="">
+        <a href="./flight-finder">
           <div className="text-center text-lg font-medium">
             Try It Out Yourself
           </div>

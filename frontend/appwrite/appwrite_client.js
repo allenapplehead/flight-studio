@@ -11,7 +11,7 @@ export function register(email, pw, name) {
     const client = new Client()
     .setEndpoint('http://localhost/v1')
     .setProject('636712c874fb329f2dda');
-
+    
     const account = new Account(client);
 
     account.create(
@@ -21,11 +21,10 @@ export function register(email, pw, name) {
         name
     ).then(response => {
         console.log(response);
-        return true;
     }, error => {
         console.log(error);
-        return false;
     });
+    return 1234;
 }
 
 /**
@@ -43,9 +42,7 @@ export function login(email, pw) {
 
     account.createEmailSession(email, pw).then(response => {
         console.log(response);
-        return true;
     }, error => {
         console.log(error);
-        return false;
     });
 }

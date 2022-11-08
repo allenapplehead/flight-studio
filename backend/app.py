@@ -1,57 +1,52 @@
 from flask import Flask, jsonify, request
 # from blueprints.flight_endpoints import flight
-from api.FlightSearch import GetFlights
+from api.FlightSearch import FlightSearch
 from api.DateSearch import DateSearch
+from api.AirportSearch import AirportSearch
 from flask_cors import CORS
+# from api.test import test
 
 app = Flask(__name__)
 cors = CORS(app)
 
-# @app.route('/')
-# def getDate():
-#     matches = datefinder.find_dates("todsay is 2000 feb 27")
-#     for match in matches:
-#         print(match)
 
-#     return str(matches).encode()
-
-# app.register_blueprint(flight)
-
-
-@app.route('/', methods=['POST'])
-def hello():
-
-    return "hello"
+# @app.route('/', methods=['POST'])
+# def hello():
+#     return test()
 
 
 @app.route('/getInfo', methods=['POST'])
 def getFlightInformation():
-    # print(request.json)
-    # print("goes here")
     prompt1 = request.get_json()["user-text"]
-    # prompt1 = "I want to fly from Chicago to Fuzhou."
-    date = DateSearch(prompt1)
-    flightClient = GetFlights(prompt1)
+    dateAPI = DateSearch(prompt1)
+    date = dateAPI.response
+    airportClient = AirportSearch(prompt1)
+    airports = airportClient.getAirports()
+    flightClient = FlightSearch(airports[0], airports[1])
+    flights = flightClient.get5CheapestRoute(date)
 
-    flight = flightClient.getCheapestRoute(date.response, 1)
-    num = flightClient.getCallsign(flight)
-    airports = flightClient.getAirports()
-    dep = flightClient.getDepartureInfo(flight)
-    arr = flightClient.getArrivalInfo(flight)
-    cost = flightClient.getPrice(flight)
-    duration = flightClient.getDuration(flight)
+    flightInfo = list()
+    for i in range(len(flights)):
+        dTime = flightClient.getDepartureInfo(flights[i])['at'].split("T")
+        aTime = flightClient.getArrivalInfo(flights[i])['at'].split("T")
+        info = {
+            "id": i+1,
+            "name": flightClient.getCallsign(flights[i]),
+            "price": flightClient.getPrice(flights[i]),
+            "Flight Duration": flightClient.getDuration(flights[i]),
+            "time": dateAPI.timeStrip(dTime[1]),
+            "Itinerary Arrival Date": aTime[0],
+            "Itinerary Arrival Time": dateAPI.timeStrip(aTime[1])
+        }
+        flightInfo.append(info)
 
     return {
-        "Flight Number": num,
-        "Departure Airport": airports[0],
-        "Departure Terminal": dep['terminal'],
-        "Departure Time": dep['at'],
-        "Arrival Airport": airports[1],
-        "Arrival Terminal": arr['terminal'],
-        "Arrival Time": arr['at'],
-        "Flight Duration": duration,
-        "Cost": cost,
+        "Departure": airports[0],
+        "Arrival": airports[1],
+        "Date": date,
+        "Information": flightInfo
     }
+    # return "hellop"
 
 
 if __name__ == '__main__':

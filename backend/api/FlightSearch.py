@@ -1,20 +1,13 @@
 from amadeus import Client, ResponseError
 import os
-import openai
 
-'''
-This function takes in a string of text and returns a list of airport codes
-'''
-
-
-class GetFlights:
+class FlightSearch:
     # set up Amadeus client and openai
     __amadeus = Client(
         client_id=os.getenv("AMADEUS_ID"),  # api key
         client_secret=os.getenv("AMADEUS_SECRET")
         # api secret key
     )
-    openai.api_key = os.getenv("OPENAI_API_KEY")
 
     # set up private and protected variables
     __flights = []
@@ -23,23 +16,15 @@ class GetFlights:
     _airports = []
 
     '''
-    object constructor, sets up all routes and sorted by price
-
-    :param input: the raw input from text field
+    object constructor, sets up airport locations
+    
+    :param departure: departure airport
+    :param arrival: arrival airport
     '''
-
-    def __init__(self, input):
-        self.__autoResponse = openai.Completion.create(
-            model="text-davinci-002",
-            prompt="Extract the airport codes from this text:\n\nText: \"I want to fly from Los Angeles to Miami.\"\nAirport codes: LAX, MIA\n\nText: \""+input+"\"\nAirport codes:",
-            temperature=0,
-            max_tokens=60,
-            top_p=1.0,
-            frequency_penalty=0.0,
-            presence_penalty=0.0,
-            stop=["\n"])  # output follows a specific format
-        self._airports = self.__autoResponse["choices"][0]["text"].strip().split(
-            ", ")  # get the output as a string
+    def __init__(self, departure, arrival):
+        self._airports = [departure, arrival]
+        if(self._airports):
+            self.__flightDisplay = True
 
     '''
     getAirports
@@ -49,10 +34,7 @@ class GetFlights:
     '''
 
     def getAirports(self):
-        if (self.__flightDisplay):
-            return self._airports
-        else:
-            return NULL
+        return self._airports
 
     '''
     getRoutes
@@ -64,20 +46,23 @@ class GetFlights:
     :rtype: dict
     '''
 
-    def getRoutes(self, departureDate, adults):
-        try:
-            response = self.__amadeus.shopping.flight_offers_search.get(
-                originLocationCode=self._airports[0],
-                destinationLocationCode=self._airports[1],
-                departureDate=departureDate,
-                adults=adults)
-            self.__flights = response.data
-            self.__flightDisplay = True
-            return self.__flights
-        except ResponseError as error:
-            print(error)
-            self.__flightDisplay = False
-            return {'status': 'error obtaining route information'}
+    def getRoutes(self, departureDate):
+        if(self.__flightDisplay):
+            try:
+                response = self.__amadeus.shopping.flight_offers_search.get(
+                    originLocationCode=self._airports[0],
+                    destinationLocationCode=self._airports[1],
+                    departureDate=departureDate,
+                    adults=1)
+                self.__flights = response.data
+                self.__flightDisplay = True
+                return self.__flights
+            except ResponseError as error:
+                print(error)
+                self.__flightDisplay = False
+                return {}
+        else:
+            return {}
 
     '''
     getNewRoutes
@@ -91,20 +76,21 @@ class GetFlights:
     :rtype: dict
     '''
 
-    def getNewRoutes(self, departureAirport, arrivalAirport, departureDate, adults):
+    def getNewRoutes(self, departureAirport, arrivalAirport, departureDate):
         try:
             response = self.__amadeus.shopping.flight_offers_search.get(
                 originLocationCode=departureAirport,
                 destinationLocationCode=arrivalAirport,
                 departureDate=departureDate,
-                adults=adults)
+                adults=1)
             self.__flights = response.data
             self.__flightDisplay = True
+            self._airports = [departureAirport, arrivalAirport]
             return self.__flights
         except ResponseError as error:
             print(error)
             self.__flightDisplay = False
-            return {'status': 'error obtaining route information'}
+            return {}
 
     '''
     getCheapestRoute
@@ -113,13 +99,33 @@ class GetFlights:
     :rtype: dict
     '''
 
-    def getCheapestRoute(self, departureDate, adults):
-        self.getRoutes(departureDate, adults)
+    def getCheapestRoute(self, departureDate):
+        self.getRoutes(departureDate)
         if (self.__flightDisplay):
             self.__flights.sort(key=lambda d: d['price']['grandTotal'])
             return self.__flights[0]
         else:
-            return {'status': 'error obtaining route information'}
+            return {}
+
+
+    '''
+    get5CheapestRoute
+    get 5 of the cheapest flight and outputs all the flight informations stored in array of dictionaries
+
+    :rtype: dict
+    '''
+
+    def get5CheapestRoute(self, departureDate):
+        self.getRoutes(departureDate)
+        returnValue = list()
+        if (self.__flightDisplay):
+            self.__flights.sort(key=lambda d: d['price']['grandTotal'])
+            maxIndex = 5 if (len(self.__flights) >= 5) else len(self.__flights)
+            for i in range(maxIndex):
+                returnValue.append(self.__flights[i])
+            return returnValue
+        else:
+            return {}
 
     '''
     getPrice

@@ -1,5 +1,6 @@
 # Flight Studio
-<iframe width="786" height="555" src="https://www.youtube.com/embed/IFe5OEIGoI8" title="Flight Studio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[![Demo](https://img.youtube.com/vi/IFe5OEIGoI8/0.jpg)](https://www.youtube.com/watch?v=IFe5OEIGoI8)
 
 This is the instruction to run Flight Studio
 
